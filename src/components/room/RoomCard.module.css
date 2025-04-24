@@ -1,0 +1,30 @@
+/* src/components/room/RoomCard.module.css */
+.roomCard {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 10px 0;
+  }
+  
+  .roomName {
+    font-size: 1.6em;
+    font-weight: bold;
+  }
+  
+  .roomPrice {
+    color: #28a745;
+    font-size: 1.2em;
+  }
+  
+  .roomCapacity {
+    color: #555;
+    font-size: 1em;
+  }
+  
+  .roomDescription {
+    color: #777;
+    font-size: 0.9em;
+  }
+  

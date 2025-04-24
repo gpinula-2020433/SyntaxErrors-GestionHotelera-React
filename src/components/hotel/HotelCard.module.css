@@ -1,0 +1,30 @@
+/* src/components/hotel/HotelCard.module.css */
+.hotelCard {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin: 10px 0;
+}
+
+.hotelName {
+  font-size: 1.6em;
+  font-weight: bold;
+}
+
+.hotelDescription {
+  color: #555;
+  font-size: 1em;
+}
+
+.hotelLocation {
+  color: #777;
+  font-size: 0.9em;
+}
+
+.hotelImage {
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 10px;
+}
