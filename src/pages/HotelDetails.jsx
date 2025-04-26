@@ -3,7 +3,7 @@ import React from 'react';
 import HotelCard from '../components/hotel/HotelCard';
 import RoomCard from '../components/room/RoomCard';
 import EventCard from '../components/event/EventCard';
-import ServiceCard from '../components/additionalService/ServiceCard';
+import ServiceCard from '../components/service/ServiceCard'
 
 const HotelDetails = () => {
   const hotel = {
@@ -32,6 +32,11 @@ const HotelDetails = () => {
 
   return (
     <div>
+        <br />
+        <br />
+      <HotelCard hotel={hotel} />
+      <HotelCard hotel={hotel} />
+      <HotelCard hotel={hotel} />
       <HotelCard hotel={hotel} />
       <RoomCard room={room} />
       <EventCard event={event} />

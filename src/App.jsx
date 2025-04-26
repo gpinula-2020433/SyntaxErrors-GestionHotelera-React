@@ -1,15 +1,13 @@
-import { useState } from 'react'
-import './App.css'
+import React from 'react'
 import HotelDetails from './pages/HotelDetails'
+import Layout from './components/layout/Layout'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export const App = () => {
   return (
-    <>
+    <Layout>
       <HotelDetails />
-    </>
-  )
-}
+    </Layout>
+  );
+};
 
 export default App
