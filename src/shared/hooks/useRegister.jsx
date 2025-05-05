@@ -44,7 +44,6 @@ export const useRegister = () => {
             )
         }
         setError(false)
-        toast.success(response?.data?.msg)
         toast.success('Registro exitoso, ya puede iniciar sesión')
 
         setTimeout(() => {

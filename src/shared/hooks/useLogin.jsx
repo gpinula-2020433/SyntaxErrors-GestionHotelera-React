@@ -33,7 +33,7 @@ export const useLogin = () => {
         }
         setError(false)
         toast.success('TODO BIEN LOEADO')
-        navigate('dashboard')
+        navigate('/main')
     }
   return {
     login,
