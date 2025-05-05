@@ -1,13 +1,16 @@
-import React from 'react'
-import HotelDetails from './pages/HotelDetails'
-import Layout from './components/layout/Layout'
+import { useRoutes } from "react-router-dom"
+import { routes } from "./routes"
+import { Toaster } from "react-hot-toast"
 
-export const App = () => {
+//Exportación por default
+function App() {
+    const elements = useRoutes(routes)
   return (
-    <Layout>
-      <HotelDetails />
-    </Layout>
-  );
-};
+    <>
+      {elements}
+      <Toaster position="bottom-right" reverseOrder={false}/>
+    </>
+  )
+}
 
 export default App

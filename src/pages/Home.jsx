@@ -1,12 +1,13 @@
 import React from "react";
-import "./body.css";
+import HotelDetails from "../pages/HotelDetails";
+import Layout from "../components/layout/Layout";
 
-const Body=() => {
+const Home=() => {
     return (
-        <div className="body-div">
-            
-        </div>
+      <Layout>
+        <HotelDetails />
+      </Layout>
     );
 }
 
-export default Body;
+export default Home;
