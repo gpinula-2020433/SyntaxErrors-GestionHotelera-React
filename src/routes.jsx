@@ -3,10 +3,12 @@ import { NotFoundPage } from "./pages/NotFound/NotFoundPage";
 import { Login } from "./components/Login/Login";
 import {Register} from "./components/Register/Register"
 import {AuthPage} from "./pages/Auth/AuthPage"
-import { AdminPage } from "./pages/admin/adminPage";
+
 import { Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Layout from "./components/layout/Layout";
+import HotelPage from "./pages/Hotel/HotelPage";
+import { AdminPage } from "./pages/admin/AdminPage";
 
 
 export const routes = [
@@ -42,7 +44,10 @@ export const routes = [
     },
     {
         path:'/admin',
-        element: <AdminPage/>
+        element: <AdminPage/>,
+        children:[
+            {path: 'hotel', element:<HotelPage/>}
+        ]
     },
     {
         path:'*',

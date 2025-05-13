@@ -12,11 +12,12 @@ export const AdminPage = () => {
   return (
     <div className="d-flex flex-column" style={{ minHeight: '100vh' }}>
       <Navbar />
-      <div className="d-flex" style={{ marginTop: '900px' }}></div>
+      <div className="d-flex" style={{ marginTop: '60px' }}></div>
       <div >
         <Sidebar/>
         <main className="flex-grow-1 p-4" style={{ marginLeft: '220px' }}>
           <Outlet/>
+          
         </main>
       </div>
       <Footer />
