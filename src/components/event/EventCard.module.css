@@ -1,0 +1,25 @@
+/* src/components/event/EventCard.module.css */
+.eventCard {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 10px 0;
+  }
+  
+  .eventName {
+    font-size: 1.6em;
+    font-weight: bold;
+  }
+  
+  .eventDate {
+    color: #ff6f61;
+    font-size: 1.2em;
+  }
+  
+  .eventDescription {
+    color: #777;
+    font-size: 1em;
+  }
+  
