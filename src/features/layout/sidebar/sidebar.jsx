@@ -7,10 +7,10 @@ function Sidebar() {
       <div className="d-flex flex-column justify-content-center flex-grow-1" style={{ position: 'relative', top: '-40px' }}>
         <ul className="list-unstyled mt-3">
           <li><Link to="/admin/hotel" className="py-2 px-3 rounded d-block hover-sidebar">Hotel</Link></li>
-          <li><Link to="/main/client" className="py-2 px-3 rounded d-block hover-sidebar">Clients</Link></li>
-          <li><Link to="/main/suppliers" className="py-2 px-3 rounded d-block hover-sidebar">Suppliers</Link></li>
-          <li><Link to="/main/movement" className="py-2 px-3 rounded d-block hover-sidebar">Movements</Link></li>
-          <li><Link to="/main/report" className="py-2 px-3 rounded d-block hover-sidebar">Reports</Link></li>
+          <li><Link to="/admin/room" className="py-2 px-3 rounded d-block hover-sidebar">Room</Link></li>
+          <li><Link to="/admin/services" className="py-2 px-3 rounded d-block hover-sidebar">Services</Link></li>
+          <li><Link to="/admin/event" className="py-2 px-3 rounded d-block hover-sidebar">Events</Link></li>
+          <li><Link to="/admin/report" className="py-2 px-3 rounded d-block hover-sidebar">Reports</Link></li>
         </ul>
       </div>
     </aside>

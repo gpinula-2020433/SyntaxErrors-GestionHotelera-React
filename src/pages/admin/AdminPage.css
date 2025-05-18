@@ -1,16 +1,36 @@
-.admin-container {
+:root {
+  --color-primary: #264653;
+  --color-secondary: #E76F51;
+  --color-accent: #F4A261;
+  --color-bg: #F0F0F0;
+  --color-text-primary: #333333;
+  --color-text-light: #FFFFFF;
+}
+
+
+.admin-page-container {
+  min-height: 100vh;
+  background-color: #121212;
+  color: #fff;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
 }
 
-.admin-content {
-  display: flex;
-  flex-grow: 1;
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
 }
 
-.admin-main {
-  margin-left: 220px; /* mismo ancho que Sidebar */
-  padding: 2rem;
-  flex-grow: 1;
+.navbar, .sidebar {
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+}
+
+a:hover {
+  color: var(--color-secondary);
+}
+
+button {
+  background-color: var(--color-accent);
+  color: var(--color-text-light);
 }

@@ -10,6 +10,7 @@ import './AdminPage.css'
 
 export const AdminPage = () => {
   return (
+    <div className="admin-page-container">
     <div className="d-flex flex-column" style={{ minHeight: '100vh' }}>
       <Navbar />
       <div className="d-flex" style={{ marginTop: '60px' }}></div>
@@ -21,6 +22,7 @@ export const AdminPage = () => {
         </main>
       </div>
       <Footer />
+    </div>
     </div>
   )
 }

@@ -9,6 +9,11 @@ import Home from "./pages/Home";
 import Layout from "./components/layout/Layout";
 import HotelPage from "./pages/Hotel/HotelPage";
 import { AdminPage } from "./pages/admin/AdminPage";
+import { element } from "prop-types";
+import { RoomPage } from "./pages/Room/RoomPage";
+import { ServicePage } from "./pages/Services/ServicePage";
+import { EventPage } from "./pages/Event/EventPage";
+import { ReportPage } from "./pages/Reports/ReportPage";
 
 
 export const routes = [
@@ -46,7 +51,12 @@ export const routes = [
         path:'/admin',
         element: <AdminPage/>,
         children:[
-            {path: 'hotel', element:<HotelPage/>}
+            {path: 'hotel', element:<HotelPage/>},
+            {path:'room', element:<RoomPage/>},
+            {path:'services', element:<ServicePage/>},
+            {path:'event', element:<EventPage/>},
+            {path:'report', element:<ReportPage/>},
+            
         ]
     },
     {

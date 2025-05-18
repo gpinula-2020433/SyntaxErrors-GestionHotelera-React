@@ -6,7 +6,7 @@ export function Navbar() {
     <nav className="navbar navbar-expand-lg bg-dark text-white px-4 shadow fixed-top">
       <div className="container-fluid d-flex justify-content-between align-items-center">
         <div className="navbar-brand text-white fw-semibold fs-5">
-          INVENTORY MANAGEMENT SYSTEM
+          Hotel Inventory
         </div>
         <div className="d-flex gap-4">
           <Link to="/main" className="text-light text-decoration-none">Home</Link>
