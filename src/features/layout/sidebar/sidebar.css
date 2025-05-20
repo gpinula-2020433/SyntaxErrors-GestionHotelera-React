@@ -1,0 +1,14 @@
+/* sidebar.css */
+
+
+.hover-sidebar {
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.hover-sidebar:hover {
+  background-color: #A3D9B1;
+  color: #2C3E50;
+  transform: translateX(8px);
+}
+
