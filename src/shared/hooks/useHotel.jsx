@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getHotelsRequest } from '../../services/hotelService'
+import { getHotelsRequest } from '../../services/api'
 
 export const useHotel = () => {
   const [hotels, setHotels] = useState([])

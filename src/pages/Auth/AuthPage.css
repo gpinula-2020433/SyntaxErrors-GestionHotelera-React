@@ -8,8 +8,9 @@
     background-size: cover;
     background-position: center;
     backdrop-filter: blur(5px);
-    background-image: url("../../assets/hoteles.jpg");  /* Asegúrate de que esta ruta sea correcta */
+    background-image: url("https://wallpapercave.com/wp/wp4676581.jpg");
 }
+
 
 /* Estilos comunes para los formularios de Login y Register */
 .login-container, .register-container {

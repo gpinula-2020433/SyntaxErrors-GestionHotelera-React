@@ -7,6 +7,18 @@ const apiClient = axios.create(
         timeout: 2000
     }
 )
+
+apiClient.interceptors.request.use(
+    (config)=> {
+        const token = localStorage.getItem('token')
+        if(token) {
+            config.headers.Authorization = token
+        }
+        return config
+    }
+)
+
+
 export const loginRequest = async(userLoginData)=>{
     try {
         return await apiClient.post('/login', userLoginData, {
@@ -33,15 +45,20 @@ export const registerRequest = async(user)=> {
     }
 }
 
-export const getBestSellingProducts = async ()=>{
+export const getHotelsRequest = async ()=>{
     try {
-        const response = await apiClient.get('/product/productosmasvendidos')
-        return response.data.products
-    } catch (error) {
-        console.error('Error fetching best selling products', error)
-        return[]
+        return await apiClient.get('/v1/hotel/',{ 
+            type: 'multipart/form-data'
+        })
+    } catch (err) {
+        return {
+            error: true,
+            err
+        }
     }
+
 }
+
 
 
 /*export const loginRequest = async(user)=>{

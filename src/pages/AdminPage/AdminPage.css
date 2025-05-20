@@ -14,11 +14,15 @@
   color: #fff;
   display: flex;
   flex-direction: column;
+  
+  
 }
 
 body {
   background-color: var(--color-bg);
   color: var(--color-text-primary);
+ 
+    
 }
 
 .navbar, .sidebar {
