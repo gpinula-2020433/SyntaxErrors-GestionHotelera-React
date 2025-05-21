@@ -1,15 +1,16 @@
-import React from 'react'
-import Navbar from './components/Navbar/Navbar'
-import Body from './body/body'
-import Footer from './footer/footer'
+import { useRoutes } from "react-router-dom"
 
-export const App = () => {
+import { routes } from "./routes"
+import { Toaster } from "react-hot-toast"
+
+//Exportación por default
+function App() {
+    const elements = useRoutes(routes)
   return (
-    <div>
-      <Navbar />
-      <Body />
-      <Footer />
-    </div>
+    <>
+      {elements}
+      <Toaster position="bottom-right" reverseOrder={false}/>
+    </>
   )
 }
 

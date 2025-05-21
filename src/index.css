@@ -8,13 +8,8 @@
 }
 
 body {
-  background: url('./assets/fondo.webp') no-repeat;
   background-size: cover;
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
   min-height: 100vh;
-}
-
-a{
-  text-decoration: none;
 }
