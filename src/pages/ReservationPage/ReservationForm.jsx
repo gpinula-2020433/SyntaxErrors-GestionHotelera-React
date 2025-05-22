@@ -68,7 +68,7 @@ export const ReservationForm = () => {
           <input type="date" value={endDate} onChange={e => setEndDate(e.target.value)} required />
 
           <label>NIT:</label>
-          <input type="text" value={NIT} onChange={e => setNIT(e.target.value)} maxLength={9} minLength={9} required />
+          <input type="text" value={NIT} onChange={e => setNIT(e.target.value)} maxLength={9} required />
 
           <label>Tipo de pago:</label>
           <select value={typeOfPayment} onChange={e => setTypeOfPayment(e.target.value)}>
