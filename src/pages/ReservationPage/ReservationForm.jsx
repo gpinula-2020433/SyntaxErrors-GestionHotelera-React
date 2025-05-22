@@ -13,7 +13,6 @@ export const ReservationForm = () => {
   const [endDate, setEndDate] = useState('')
   const [NIT, setNIT] = useState('')
   const [typeOfPayment, setTypeOfPayment] = useState('CARD')
-  const [status, setStatus] = useState('ACTIVA')
 
   const token = localStorage.getItem('token')
   const user = decodeToken(token)
@@ -27,15 +26,13 @@ export const ReservationForm = () => {
     }
 
     const reservationPayload = {
-      customer: state.customer,
       hotel: state.hotelId,
       room: [state.roomId],
       service: state.serviceId,
       starDate: startDate,
       endDate: endDate,
       NIT,
-      typeOfPayment,
-      status
+      typeOfPayment
     }
 
     try {
@@ -72,6 +69,7 @@ export const ReservationForm = () => {
             type="text"
             value={NIT}
             onChange={e => setNIT(e.target.value)}
+            placeholder='(ej. 1234567-8 o 5489381-K)'
             required
             maxLength={9}
             pattern="\d{7}-[0-9K]"
@@ -82,13 +80,6 @@ export const ReservationForm = () => {
           <select value={typeOfPayment} onChange={e => setTypeOfPayment(e.target.value)}>
             <option value="CARD">Tarjeta</option>
             <option value="CASH">Efectivo</option>
-          </select>
-
-          <label>Estado:</label>
-          <select value={status} onChange={e => setStatus(e.target.value)}>
-            <option value="ACTIVA">Activa</option>
-            <option value="CANCELADA">Cancelada</option>
-            <option value="FINALIZADA">Finalizada</option>
           </select>
 
           <button type="submit">Confirmar Reservación</button>

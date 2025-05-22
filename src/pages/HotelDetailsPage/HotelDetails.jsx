@@ -16,7 +16,7 @@ export const HotelDetails = () => {
   const handleReserve = (room) => {
     navigate('/main/reservation', {
       state: {
-        customer: userId,
+        //customer: userId   no es necesario enviarlo, lo obtiene del token
         hotelId: hotel._id,
         hotel,
         roomId: room._id,
