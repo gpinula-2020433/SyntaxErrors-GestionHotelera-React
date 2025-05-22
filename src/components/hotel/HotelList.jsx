@@ -25,6 +25,7 @@ export const HotelList = () => {
         {Array.isArray(hotels) && hotels.map((hotel) => (
           <div key={hotel._id} className="col-sm-12 col-md-6 col-lg-4">
               <HotelCard 
+                id={hotel._id}
                 name={hotel.name}
                 address={hotel.address}
                 description={hotel.description}

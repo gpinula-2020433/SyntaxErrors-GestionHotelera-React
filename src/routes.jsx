@@ -12,7 +12,9 @@ import HomePage from './pages/HomePage/HomePage'
 import { UserPage } from './pages/UserPage/userPage'
 import { UpdateUserPage } from './pages/UserPage/UpdateUserPage'
 import { UpdatePasswordPage } from './pages/UserPage/UpdatePasswordPage'
-
+import { HotelList } from './components/Hotel/HotelList'
+import { HotelDetails } from './pages/HotelDetailsPage/HotelDetails'
+import {ReservationForm} from './pages/ReservationPage/ReservationForm'
 export const routes = [
     {
         path: '/', 
@@ -39,6 +41,20 @@ export const routes = [
     {
         path:'/main',
         element: <MainPage />,
+        children: [
+            {
+                path: 'hotellist',
+                element: <HotelList/>
+            },
+            {
+                path: 'hoteldetails/:id',
+                element: <HotelDetails />,
+            },
+            {
+                path: 'reservation',
+                element: <ReservationForm/>
+            }
+        ]
     },
     {
         path:'/admin',

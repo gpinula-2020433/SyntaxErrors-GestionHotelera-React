@@ -11,7 +11,7 @@ const HomePage = () => {
         <img src={logo} alt="Logo Hotel" className="logo" />
         <h1 className="tagline">Bienvenido a Hoteles VIP</h1>
         <p className="subtext">Encuentra el lugar perfecto para relajarte o trabajar</p>
-        <a href="/main" className="enter-btn">
+        <a href="/main/hotellist" className="enter-btn">
           Entrar <FaArrowRight />
         </a>
       </div>

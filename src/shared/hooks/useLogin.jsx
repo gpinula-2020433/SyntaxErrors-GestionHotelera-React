@@ -1,44 +1,57 @@
-import React, { useState } from 'react'
-import { loginRequest } from '../../services/api'
-import toast from 'react-hot-toast'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from 'react';
+import { loginRequest } from '../../services/api';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 export const useLogin = () => {
-    const [isLoading, setIsLoading] = useState(false)
-    const [error, setError] = useState(false)
-    const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const navigate = useNavigate();
 
-    const login = async(userLoggin, password)=>{
-        setIsLoading(true)
-        const userLoginData = {
-            userLoggin, 
-            password
-        }
-        const response = await loginRequest(userLoginData)
-        setIsLoading(false)
+  const login = async (userLoggin, password) => {
+    setIsLoading(true);
+    const userLoginData = {
+      userLoggin,
+      password
+    };
 
-        if(response.error){
-            setError(true)
-            if(response?.err?.response?.data?.errors){
-                let arrayErrors = response?.err?.response?.data?.errors
-                for (const error of arrayErrors) {
-                    return toast.error(error.msg)
-                }
-            }
-            return toast.error(
-                response?.err?.response?.data?.msg ||
-                response?.err?.data?.msg ||
-                'Error general al logear. Intente de nuevo, todo mal...'
-            )
+    const response = await loginRequest(userLoginData);
+    setIsLoading(false);
+
+    if (response.error) {
+      setError(true);
+      if (response?.err?.response?.data?.errors) {
+        let arrayErrors = response.err.response.data.errors;
+        for (const error of arrayErrors) {
+          return toast.error(error.msg);
         }
-        setError(false)
-        toast.success('TODO BIEN LOEADO')
-        navigate('/main')
+      }
+      return toast.error(
+        response?.err?.response?.data?.msg ||
+          response?.err?.data?.msg ||
+          'Error general al logear. Intente de nuevo, todo mal...'
+      );
     }
+
+    // ✅ Guarda el token y los datos del usuario en localStorage
+    const token = response.data?.token;
+    const loggedUser = response.data?.loggedUser;
+    if (token) {
+      localStorage.setItem('token', token);
+    }
+    if (loggedUser) {
+      localStorage.setItem('user', JSON.stringify(loggedUser));
+    }
+
+    setError(false);
+    toast.success('TODO BIEN LOGEADO');
+    navigate('/main/hotellist');
+  };
+  
   return {
     login,
     isLoading,
     error,
     setError
-  }
-}
+  };
+};
