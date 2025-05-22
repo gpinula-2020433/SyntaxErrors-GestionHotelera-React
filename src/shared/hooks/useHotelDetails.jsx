@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getHotelDetailsRequest } from '../../services/api'
+import toast from 'react-hot-toast'
 
 export const useHotelDetails = (id) => {
   const [details, setDetails] = useState({
@@ -25,7 +26,7 @@ export const useHotelDetails = (id) => {
       } catch (err) {
         console.error('Error cargando detalles del hotel:', err)
         setError(err.message)
-        alert('Error al obtener los detalles del hotel')
+        toast.error('Error al obtener los detalles del hotel')
       } finally {
         setLoading(false)
       }
