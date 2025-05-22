@@ -1,23 +1,22 @@
-.room-container {
+.hotel-container {
   background-color: rgba(255, 255, 255, 0.75); 
   border-radius: 16px;                         
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);  
   padding: 24px;
   backdrop-filter: blur(6px);               
   margin: 20px auto;
-  max-width: 100%;
+  max-width: auto;
   min-height: auto;
-  /* background-color: #f8f9fa; */
 }
 
-.room-header {
+.hotel-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
 }
 
-.room-header h2 {
+.hotel-header h2 {
   margin: 0;
   font-size: 28px;
   font-weight: bold;
@@ -37,21 +36,28 @@
   overflow-x: auto;
 }
 
-.room-table {
+.hotel-table {
   width: 100%;
   border-collapse: collapse;
   background-color: white;
 }
 
-.room-table th,
-.room-table td {
+.hotel-table th{
   padding: 10px;
   border: 1px solid white;
   text-align: left;
   white-space: nowrap;
 }
 
-.room-table th {
+.hotel-table td {
+  padding: 10px;
+  border: 1px solid white;
+  text-align: left;
+  white-space: nowrap;
+  color: black;
+}
+
+.hotel-table th {
   background-color: black;
   font-weight: bold;
 }
@@ -80,7 +86,7 @@
 }
 
 @media (max-width: 768px) {
-  .room-header {
+  .hotel-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
@@ -91,8 +97,52 @@
     gap: 5px;
   }
 
-  .room-container {
+  .hotel-container {
     margin-left: 0;
     padding: 10px;
   }
+} 
+
+ .custom-modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+}
+
+.custom-modal-content {
+  background-color: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 800px;
+  padding: 20px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.modal-header h1 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.btn-close {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
