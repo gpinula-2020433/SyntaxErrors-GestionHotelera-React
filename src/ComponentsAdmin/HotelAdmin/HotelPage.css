@@ -1,15 +1,13 @@
 .room-container {
-  background-color: rgba(255, 255, 255, 0.75); /* blanco semitransparente */
-  border-radius: 16px;                         /* bordes redondeados */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);   /* sombra suave */
+  background-color: rgba(255, 255, 255, 0.75); 
+  border-radius: 16px;                         
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);  
   padding: 24px;
-  backdrop-filter: blur(6px);                 /* desenfoque del fondo */
+  backdrop-filter: blur(6px);               
   margin: 20px auto;
-  max-width: 1096px;
-  /* padding: 20px;
-  min-height: 100vh;
-  background-color: #f8f9fa; */
-  
+  max-width: 100%;
+  min-height: auto;
+  /* background-color: #f8f9fa; */
 }
 
 .room-header {
@@ -81,7 +79,6 @@
   cursor: pointer;
 }
 
-/* Responsivo */
 @media (max-width: 768px) {
   .room-header {
     flex-direction: column;

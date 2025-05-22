@@ -68,7 +68,15 @@ export const ReservationForm = () => {
           <input type="date" value={endDate} onChange={e => setEndDate(e.target.value)} required />
 
           <label>NIT:</label>
-          <input type="text" value={NIT} onChange={e => setNIT(e.target.value)} maxLength={9} required />
+          <input
+            type="text"
+            value={NIT}
+            onChange={e => setNIT(e.target.value)}
+            required
+            maxLength={9}
+            pattern="\d{7}-[0-9K]"
+            title="El NIT debe tener 7 números, un guion y un dígito verificador (0-9 o K)"
+          />
 
           <label>Tipo de pago:</label>
           <select value={typeOfPayment} onChange={e => setTypeOfPayment(e.target.value)}>
