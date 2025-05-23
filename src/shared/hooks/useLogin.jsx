@@ -20,34 +20,40 @@ export const useLogin = () => {
 
     if (response.error) {
       setError(true);
-      if (response?.err?.response?.data?.errors) {
-        let arrayErrors = response.err.response.data.errors;
-        for (const error of arrayErrors) {
-          return toast.error(error.msg);
+
+      const errorData = response?.err?.response?.data;
+
+      if (errorData?.errors) {
+        for (const err of errorData.errors) {
+          toast.error(err.msg);
         }
+        return;
       }
-      return toast.error(
-        response?.err?.response?.data?.msg ||
-          response?.err?.data?.msg ||
-          'Error general al logear. Intente de nuevo, todo mal...'
+
+      toast.error(
+        errorData?.message ||
+        response?.err?.data?.message ||
+        'Error general al logear. Intente de nuevo, todo mal...'
       );
+      return;
     }
 
-    // ✅ Guarda el token y los datos del usuario en localStorage
     const token = response.data?.token;
     const loggedUser = response.data?.loggedUser;
-    if (token) {
-      localStorage.setItem('token', token);
-    }
-    if (loggedUser) {
-      localStorage.setItem('user', JSON.stringify(loggedUser));
+
+    if (!token || !loggedUser) {
+      toast.error('Faltan datos en la respuesta del servidor');
+      return;
     }
 
+    localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(loggedUser));
+
     setError(false);
-    toast.success('TODO BIEN LOGEADO');
+    toast.success(response.data?.message || 'Login exitoso');
     navigate('/main/hotellist');
   };
-  
+
   return {
     login,
     isLoading,
