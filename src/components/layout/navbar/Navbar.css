@@ -115,7 +115,12 @@
   font-weight: 900;
 }
  
-/**/
+.navbar a[href*="invoice"]::after { 
+  content: '\f571';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+}
+
 .navbar a.active {
   color: var(--primary-color) !important;
 }
