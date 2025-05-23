@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useUser } from '../../shared/hooks/useUser';
 import { updatePasswordRequest } from '../../services/api';
-
+import './UpdateP.css'
 export const UpdatePasswordPage = () => {
   const { user } = useUser();
   const [formData, setFormData] = useState({
@@ -38,37 +38,26 @@ export const UpdatePasswordPage = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 mt-10 bg-black rounded shadow">
-      <h2 className="text-2xl font-bold mb-4">Actualizar Contraseña</h2>
+    <div className="update-password-container">
+      <h2 className="title">Actualizar Contraseña</h2>
       <form onSubmit={handleSubmit}>
-        <label className="block mb-2 text-sm font-medium text-gray-700">
-          Contraseña actual
-        </label>
+        <label>Contraseña actual</label>
         <input
           type="password"
           name="currentPassword"
           value={formData.currentPassword}
           onChange={handleChange}
-          className="w-full p-2 mb-4 border rounded text-black"
         />
 
-        <label className="block mb-2 text-sm font-medium text-gray-700">
-          Nueva contraseña
-        </label>
+        <label>Nueva contraseña</label>
         <input
           type="password"
           name="newPassword"
           value={formData.newPassword}
           onChange={handleChange}
-          className="w-full p-2 mb-4 border rounded text-black"
         />
 
-        <button
-          type="submit"
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-        >
-          Actualizar
-        </button>
+        <button type="submit">Actualizar</button>
       </form>
     </div>
   );
