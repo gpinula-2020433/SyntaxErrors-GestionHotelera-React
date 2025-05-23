@@ -53,6 +53,6 @@ export const useHotelsAdmin = () => {
     addHotel,
     updateHotel,
     deleteHotel,
-    fetchHotels // opcional, por si lo necesitas
+    fetchHotels
   }
 }

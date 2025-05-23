@@ -60,6 +60,10 @@ export const routes = [
         path:'/admin',
         element: <AdminPage/>,
         children:[
+            {
+                path: '',
+                element: <Navigate to="hotel" /> 
+            },
             {path: 'hotel', element: <HotelPage/>},
             {path:'room', element:<RoomPage/>}
             
