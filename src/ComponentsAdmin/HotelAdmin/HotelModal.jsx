@@ -10,7 +10,6 @@ export const HotelModal = ({ isEdit, setIsEdit, hotel, closeModal, refreshHotels
         onClick={e => e.stopPropagation()}
       >
         <div className="modal-header">
-          <h1>{isEdit ? "Editar hotel" : "Agregar hotel"}</h1>
           <button onClick={closeModal} className="btn-close">
             &times;
           </button>

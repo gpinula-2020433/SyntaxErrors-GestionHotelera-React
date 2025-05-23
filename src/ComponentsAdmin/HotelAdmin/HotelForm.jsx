@@ -158,13 +158,21 @@ const submit = async (data) => {
       </div>
 
       <div className="mb-3">
-        <label><strong>Categoría:</strong></label>
-        <input
-          {...register("category", { required: "La categoría es obligatoria" })}
-          className="form-control"
-        />
-        {errors.category && <small className="text-danger">{errors.category.message}</small>}
-      </div>
+  <label><strong>Categoría:</strong></label>
+  <select
+    {...register("category", { required: "La categoría es obligatoria" })}
+    className="form-control"
+  >
+    <option value="">Seleccione una opción</option>
+    {[1, 2, 3, 4, 5].map((num) => (
+      <option key={num} value={num}>{num}</option>
+    ))}
+  </select>
+  {errors.category && (
+    <small className="text-danger">{errors.category.message}</small>
+  )}
+</div>
+
 
       <div className="mb-3">
         <label ><strong>Comodidades</strong> (separadas por coma):</label>

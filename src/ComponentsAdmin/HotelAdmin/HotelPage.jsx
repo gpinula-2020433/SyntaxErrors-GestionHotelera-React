@@ -88,7 +88,14 @@ export const HotelPage = () => {
                 <td>{hotel.amenities?.join(", ")}</td>
                 <td>{hotel.services?.map(s => s.name).join(", ")}</td>
                 <td>
-                  <img src={hotel.image} alt="hotel" width="60" />
+                {hotel.imageHotel && 
+      <img
+        src={`http://localhost:3200/uploads/img/users/${hotel.imageHotel}`}
+        crossOrigin="anonymous"
+        alt={`Imagen de ${hotel.name}`}
+        className="image"
+      />
+    }
                 </td>
                 <td>
                   <button

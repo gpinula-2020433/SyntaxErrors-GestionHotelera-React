@@ -38,14 +38,22 @@ export const HotelCard = ({
   className="card-img-top hotel-image"
   alt={name}
 />
-        <span className="badge bg-dark position-absolute top-0 end-0 m-2">
-          {category}★
-        </span>
+<span
+  className="badge position-absolute top-0 end-0 m-2"
+  style={{ backgroundColor: '#ffcc00', color: '#000' }}
+>
+  {category}★
+</span>
+
+
       </div>
 
       <div className="card-body d-flex flex-column">
         <h5 className="card-title fw-bold">{name}</h5>
-        <p className="text-muted small mb-2"><i className="fas fa-map-marker-alt me-1"></i>{address}</p>
+        <p className="text-white small mb-2">
+  <i className="fas fa-map-marker-alt me-1"></i>{address}
+</p>
+
         <p className="card-text small">{description}</p>
 
         <div className="mt-2 small">
