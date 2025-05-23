@@ -1,0 +1,292 @@
+/* Contenedor general */
+.hotel-details-container {
+  background-color: #121212;
+  color: #f5f5f5;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Botón de regreso */
+.back-button {
+  background-color: #2c2c2c;
+  color: #f5f5f5;
+  border: 1px solid #444;
+  padding: 0.6rem 1.2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-bottom: 2rem;
+}
+
+.back-button:hover {
+  background-color: #3a3a3a;
+}
+
+/* Información del hotel */
+.hotel-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: #1d1d2c;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+  color: #e5e5e5;
+  margin: 20px 0;
+  width: 100%;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: transform 0.3s ease;
+  flex-direction: column; /* Imagen arriba en móviles */
+}
+
+.hotel-info:hover {
+  transform: translateY(-5px);
+}
+
+.image {
+  flex: 1 1 auto;
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+  margin-bottom: 1.5rem;
+}
+
+.leftSide {
+  flex: 1 1 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-size: 2rem;
+  color: #facc15;
+  font-weight: bold;
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.description {
+  padding: 20px 1px 2px 1px;
+  font-size: 1rem;
+  color: #d4d4d8;
+  line-height: 1.3;
+}
+
+/* rightSide como info adicional */
+.rightSide {
+  flex: 1 1 100%;
+  padding: 20px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.info {
+  font-size: 1rem;
+  color: #d4d4d8;
+  margin-bottom: 1rem;
+}
+
+.info p {
+  margin: 8px 0;
+}
+
+.info strong {
+  color: #a5bdb8;
+}
+
+.map {
+  width: 100%;
+  height: 390px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+  margin-top: 1rem;
+}
+
+.mapContainer {
+  margin-top: 2px;
+}
+
+/* Responsive para pantallas grandes */
+@media (min-width: 601px) {
+  .hotel-info {
+    flex-direction: row;
+    gap: 1rem; /* Espacio pequeño entre imagen y contenido */
+  }
+  .image {
+    width: 100%; /* Reducir un poco el ancho para que no quede mucho espacio */
+    height: 490px;
+    border-radius: 15px 0 0 15px;
+    margin-bottom: 0;
+  }
+  .leftSide {
+    width: 45%; /* Ajuste para que quede justo al lado de la imagen */
+    padding: 20px 10px 1px 20px; /* Reducir padding derecho */
+  }
+  .rightSide {
+    width: 100%; /* Que ocupe todo el ancho debajo del leftSide */
+    padding: 1px 20px 20px 0; /* Reducir padding superior y lateral */
+    margin-top: 0;
+  }
+  .mapContainer {
+    margin-top: 7px;
+  }
+}
+
+
+/* Responsive para pantallas pequeñas */
+@media (max-width: 600px) {
+  .hotel-info {
+    flex-direction: column;
+  }
+  .image {
+    height: 200px;
+    border-radius: 10px 10px 0 0;
+  }
+  .leftSide, .rightSide {
+    width: 100%;
+    padding: 0 20px 20px 20px;
+  }
+  .map {
+    height: 200px;
+  }
+  .mapContainer {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+}
+
+/* Secciones */
+.section {
+  margin-top: 3rem;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #22d3ee;
+}
+
+/* Grid para habitaciones, servicios, eventos */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 2rem;
+}
+
+/* Tarjetas */
+.card {
+  background-color: #2c2c3c;
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  color: #e5e5e5;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8);
+}
+
+.card-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #a78bfa;
+}
+
+.card-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-top: 1rem;
+}
+
+/* Botón de reservar */
+.reserve-button {
+  margin-top: 1rem;
+  background-color: #10b981;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.reserve-button:hover {
+  background-color: #059669;
+  transform: scale(1.03);
+}
+
+/* Estados vacíos o de error */
+.empty-section,
+.loading,
+.error {
+  font-style: italic;
+  color: #f87171;
+  margin-top: 0.5rem;
+}
+
+/* Mejora visual para inputs si se llegaran a usar aquí */
+input, textarea {
+  background-color: #2d2d2d;
+  color: #f5f5f5;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 0.5rem;
+  width: 100%;
+  margin-top: 0.3rem;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #aaa;
+}
+
+/* Tarjetas no disponibles */
+.card-unavailable {
+  background-color: #2c2c2c;
+  border: 2px solid #555;
+  opacity: 0.7;
+}
+
+.button-unavailable:hover {
+  background-color: #232222;
+  transform: scale(1.03);
+}
+
+.button-available {
+  background-color: #10b981;
+  color: #ffffff;
+}
+
+.button-available:hover {
+  background-color: #059669;
+  transform: scale(1.03);
+}
+
+.button-unavailable {
+  background-color: #555;
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Botón reservar general */
+.reserve-button {
+  margin-top: 1rem;
+  font-weight: bold;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 10px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}

@@ -1,0 +1,48 @@
+/* Estilo general oscuro y elegante */
+.user-page-container {
+  background-color: #121212;
+  padding: 2rem;
+  min-height: 100vh;
+  color: #f1f1f1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Contenedor de los botones */
+.user-page-buttons {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Botón base */
+.user-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+
+/* Botón azul */
+.user-btn.blue {
+  background: linear-gradient(135deg, #3a86ff, #4361ee);
+}
+
+/* Botón morado */
+.user-btn.purple {
+  background: linear-gradient(135deg, #3a86ff, #4361ee);
+}
+
+/* Hover animado */
+.user-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  opacity: 0.9;
+}

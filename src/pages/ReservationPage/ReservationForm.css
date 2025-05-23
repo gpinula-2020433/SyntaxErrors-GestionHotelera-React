@@ -1,0 +1,198 @@
+/* Contenedor principal con dos columnas */
+.reservation-container {
+  display: flex;
+  gap: 40px;
+  padding: 30px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  background-color: #f9fafb;
+  min-height: 80vh;
+}
+
+/* Columna izquierda: mensaje arriba, formulario abajo */
+.left-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Mensaje de bienvenida */
+.welcome-message {
+  background: linear-gradient(135deg, #6a9cf9, #4361ee);
+  color: #fff;
+  padding: 20px 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(67, 97, 238, 0.3);
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+/* Formulario */
+.reservation-form {
+  background: #fff;
+  padding: 30px 35px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Títulos dentro del formulario y resumen */
+.reservation-form h2,
+.reservation-summary h2 {
+  margin-bottom: 20px;
+  color: #2c3e50;
+  font-weight: 700;
+  font-size: 1.8rem;
+  border-bottom: 2px solid #4361ee;
+  padding-bottom: 8px;
+}
+
+/* Labels */
+.reservation-form label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #4a4a4a;
+}
+
+/* Inputs, select */
+.reservation-form input[type="date"],
+.reservation-form input[type="text"],
+.reservation-form select {
+  padding: 10px 14px;
+  font-size: 1rem;
+  border: 2px solid #d1d5db;
+  border-radius: 8px;
+  transition: border-color 0.25s ease;
+  outline: none;
+}
+
+.reservation-form input[type="date"]:focus,
+.reservation-form input[type="text"]:focus,
+.reservation-form select:focus {
+  border-color: #4361ee;
+  box-shadow: 0 0 8px rgba(67, 97, 238, 0.25);
+}
+
+/* Botón */
+.reservation-form button.cancel-button {
+  background-color: #e53e3e;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 0;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.reservation-form button.cancel-button:hover {
+  background-color: #c53030;
+}
+
+
+/* Columna derecha - resumen */
+.right-column {
+  flex: 1;
+  background: #fff;
+  padding: 30px 25px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+  overflow-y: auto;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Secciones del resumen */
+.summary-section {
+  border-bottom: 1px solid #e0e7ff;
+  padding-bottom: 15px;
+}
+
+.summary-section:last-child {
+  border-bottom: none;
+}
+
+/* Títulos de secciones */
+.summary-section h3 {
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 12px;
+  font-size: 1.25rem;
+}
+
+/* Texto del resumen */
+.summary-section p {
+  margin: 4px 0;
+  font-size: 1rem;
+  color: #4b5563;
+}
+
+/* Imágenes en resumen */
+.summary-image {
+  width: 100%;
+  max-height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-top: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Scroll suave para columna derecha */
+.right-column::-webkit-scrollbar {
+  width: 8px;
+}
+
+.right-column::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.right-column::-webkit-scrollbar-thumb {
+  background: #4361ee;
+  border-radius: 10px;
+}
+
+.right-column::-webkit-scrollbar-thumb:hover {
+  background: #3048b4;
+}
+
+/* Responsive para pantallas pequeñas */
+@media (max-width: 900px) {
+  .reservation-container {
+    flex-direction: column;
+  }
+
+  .left-column, .right-column {
+    max-height: none;
+  }
+  
+  .right-column {
+    margin-top: 30px;
+    max-height: none;
+  }
+}
+.cancel-button {
+  margin-top: 10px;
+  background-color: #e53e3e;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 0;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cancel-button:hover {
+  background-color: #c53030;
+}
