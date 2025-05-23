@@ -24,7 +24,6 @@ body {
   padding-top: 80px;
 }
 
-/* Navbar Principal */
 .navbar {
   background: var(--gradient);
   color: var(--text-white);
@@ -56,7 +55,6 @@ body {
   align-items: center;
 }
 
-/* Logo con Animación */
 .navbar-logo {
   display: flex;
   align-items: center;
@@ -85,7 +83,6 @@ body {
   color: var(--text-white);
 }
 
-/* Menú de Navegación */
 .navbar-links {
   display: flex;
   gap: 1.5rem;
@@ -138,7 +135,6 @@ body {
   width: 100%;
 }
 
-/* Botón de Menú Móvil */
 .navbar-toggle {
   display: none;
   background: none;
@@ -154,7 +150,6 @@ body {
   transform: rotate(90deg);
 }
 
-/* Efecto de Onda en los Enlaces */
 .navbar-links a span {
   position: relative;
   z-index: 1;
@@ -177,7 +172,6 @@ body {
   transform: scale(1.5);
 }
 
-/* Indicador de Página Activa */
 .navbar-links a.active {
   color: var(--accent-color);
   background-color: rgba(52, 73, 94, 0.5);
@@ -187,7 +181,6 @@ body {
   width: 100%;
 }
 
-/* Botón de Acción Especial */
 .navbar-cta {
   margin-left: 1.5rem;
   padding: 0.6rem 1.2rem;
@@ -208,7 +201,6 @@ body {
   background-color: var(--text-white);
 }
 
-/* Efecto de Escritura en el Logo */
 .typing-effect {
   position: relative;
 }
@@ -226,7 +218,6 @@ body {
   50% { opacity: 0; }
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .navbar-container {
     padding: 0 1.5rem;
