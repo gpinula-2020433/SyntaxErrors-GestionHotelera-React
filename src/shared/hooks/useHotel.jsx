@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getHotelsRequest } from '../../services/api'
+import toast from 'react-hot-toast'
 
 export const useHotel = () => {
   const [hotels, setHotels] = useState([])
@@ -9,14 +10,14 @@ export const useHotel = () => {
     setIsFetching(true)
 
     const response = await getHotelsRequest()
-    console.log("Respuesta completa:", response);
+    console.log("Respuesta completa:", response)
+
     if (response.error) {
       console.error(response.err)
-      alert('Error al obtener los hoteles')
+      toast.error('Error al obtener los hoteles')
       setHotels([])
     } else {
       setHotels(response.data?.hotel || [])
- // asegúrate que sea array
     }
 
     setIsFetching(false)

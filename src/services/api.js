@@ -18,7 +18,6 @@ apiClient.interceptors.request.use(
     }
 )
 
-
 export const loginRequest = async(userLoginData)=>{
     try {
         return await apiClient.post('/login', userLoginData, {
@@ -101,3 +100,27 @@ export const deleteUserRequest = async(id, password) => {
     throw error
   }
 };
+
+
+export const getHotelDetailsRequest = async (id) => {
+  try {
+    return await apiClient.get(`/v1/hotel/hoteldetails/${id}`)
+  } catch (err) {
+    return {
+      error: true,
+      err
+    }
+  }
+}
+
+export const createReservation = async (data) => {
+  const token = localStorage.getItem('token')
+
+  const response = await apiClient.post('/v1/reservation', data, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+
+  return response.data
+}

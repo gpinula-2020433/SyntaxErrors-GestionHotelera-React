@@ -1,7 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // importar navigate
 import './HotelCard.css';
 
 export const HotelCard = ({
+  id,
   name,
   address,
   description,
@@ -11,6 +13,8 @@ export const HotelCard = ({
   services,
   imageHotel
 }) => {
+  const navigate = useNavigate(); 
+
   const renderStars = (count) => {
     return [...Array(5)].map((_, i) => (
       <i
@@ -21,14 +25,19 @@ export const HotelCard = ({
     ));
   };
 
+  const handleDetailsClick = () => {
+    navigate(`/main/hoteldetails/${id}`);
+  };
+
   return (
     <div className="card hotel-card border-0 shadow-lg overflow-hidden h-100">
       <div className="hotel-image-wrapper">
         <img
-          src={imageHotel}
-          className="card-img-top hotel-image"
-          alt={name}
-        />
+  src={`http://localhost:3200/uploads/img/users/${imageHotel}`}
+  crossOrigin="anonymous"
+  className="card-img-top hotel-image"
+  alt={name}
+/>
         <span className="badge bg-dark position-absolute top-0 end-0 m-2">
           {category}★
         </span>
@@ -46,10 +55,9 @@ export const HotelCard = ({
           <p><strong>Servicios:</strong> {Array.isArray(services) ? services.map(s => s.name || s).join(', ') : 'Ninguno'}</p>
         </div>
 
-        <button className="btn btn-primary mt-auto animate-btn">
-  <i className="fas fa-info-circle me-2"></i>Ver detalles
-</button>
-
+        <button className="btn btn-primary mt-auto animate-btn" onClick={handleDetailsClick}>
+          <i className="fas fa-info-circle me-2"></i>Ver detalles
+        </button>
       </div>
     </div>
   );

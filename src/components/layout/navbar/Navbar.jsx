@@ -9,7 +9,7 @@ export function Navbar() {
           Hotel Inventory
         </div>
         <div className="d-flex gap-4">
-          <Link to="/main" className="text-light text-decoration-none">Home</Link>
+          <Link to="/main/hotellist" className="text-light text-decoration-none">Home</Link>
           
           <Link to="/auth/login" className="text-light text-decoration-none">Log in</Link>
           <Link to="/admin" className="text-light text-decoration-none">Admin</Link>

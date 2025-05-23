@@ -28,10 +28,10 @@ export const validateUsername = (username) => {
 
 /* ---------------------VALIDACIÓN DE CONTRASEÑA--------------------- */
 export const validatePassword = (password) => {
-    // La contraseña debe tener entre 8 y 20 caracteres, y no puede contener espacios.
-    const regex = /^\S{8,20}$/
-    return regex.test(password)
-}
+  const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])\S{8,20}$/;
+  return regex.test(password);
+};
+
 
 /* ---------------------VALIDACIÓN DE CONFIRMACIÓN DE CONTRASEÑA--------------------- */
 export const validatePassConfirm = (password, passConfirm) => {
@@ -49,7 +49,7 @@ export const validatePhone = (phone) => {
 /* ---------------------MENSAJES DE VALIDACIÓN--------------------- */
 export const emailValidationMessage = 'Por favor ingresa un correo válido'
 export const usernameValidationMessage = 'El nombre de usuario debe de contener entre 3 a 15 caracteres y no puede contener espacios'
-export const passwordValidationMessage = 'La contraseña debe contener de 8 a 10 caracteres, y no puede contener espacios'
+export const passwordValidationMessage = 'La contraseña debe ser más fuerte, debe tener al menos 8 caracteres, incluyendo mayúsculas, minúsculas, números y símbolos'
 export const passConfirmValidationMessage = 'Las contraseñas no coinciden'
 export const nameValidationMessage = 'El nombre debe contener entre 1 y 25 caracteres'
 export const surnameValidationMessage = 'El apellido debe contener entre 1 y 25 caracteres'
