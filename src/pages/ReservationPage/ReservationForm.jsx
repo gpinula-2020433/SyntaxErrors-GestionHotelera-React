@@ -1,13 +1,27 @@
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { createReservation } from '../../services/api'
 import { decodeToken } from '../../shared/utils/decodeToken'
 import toast from 'react-hot-toast'
 import './ReservationForm.css'
 
 export const ReservationForm = () => {
-  const { state } = useLocation()
+  const location = useLocation()
   const navigate = useNavigate()
+  const [reservationData, setReservationData] = useState(location.state || null)
+
+  useEffect(() => {
+    if (!reservationData) {
+      const stored = localStorage.getItem('pendingReservation')
+      if (stored) {
+        setReservationData(JSON.parse(stored))
+        localStorage.removeItem('pendingReservation')
+      } else {
+        toast.error('No hay información de reserva')
+        navigate('/main/hotellist')
+      }
+    }
+  }, [reservationData, navigate])
 
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
@@ -26,9 +40,9 @@ export const ReservationForm = () => {
     }
 
     const reservationPayload = {
-      hotel: state.hotelId,
-      room: [state.roomId],
-      service: state.serviceId,
+      hotel: reservationData.hotelId,
+      room: [reservationData.roomId],
+      service: reservationData.serviceId,
       starDate: startDate,
       endDate: endDate,
       NIT,
@@ -45,12 +59,14 @@ export const ReservationForm = () => {
     }
   }
 
+  if (!reservationData) return null // mientras carga
+
   return (
     <div className="reservation-container">
       <div className="left-column">
         <div className="welcome-message">
           <h4>
-            Bienvenido {user?.name} a la reservación de su habitación "{state.room?.name}" en el hotel "{state.hotel?.name}"
+            Bienvenido {user?.name} a la reservación de su habitación "{reservationData.room?.name}" en el hotel "{reservationData.hotel?.name}"
           </h4>
           <p>Es un placer que esté aquí. Esperamos que tenga una excelente experiencia y disfrute de su estadía.</p>
         </div>
@@ -93,28 +109,28 @@ export const ReservationForm = () => {
         <h2>Resumen de Reservación</h2>
 
         <div className="summary-section">
-          <h3>Hotel: {state.hotel?.name}</h3>
-          <p><strong>Dirección:</strong> {state.hotel?.address}</p>
-          <p><strong>Teléfono:</strong> {state.hotel?.phone}</p>
-          <p><strong>Categoría:</strong> {state.hotel?.category} ⭐</p>
-          <p><strong>Amenities:</strong> {state.hotel?.amenities?.join(', ')}</p>
-          {state.hotel?.imageHotel && (
-            <img src={state.hotel.imageHotel} alt="Hotel" className="summary-image" />
+          <h3>Hotel: {reservationData.hotel?.name}</h3>
+          <p><strong>Dirección:</strong> {reservationData.hotel?.address}</p>
+          <p><strong>Teléfono:</strong> {reservationData.hotel?.phone}</p>
+          <p><strong>Categoría:</strong> {reservationData.hotel?.category} ⭐</p>
+          <p><strong>Amenities:</strong> {reservationData.hotel?.amenities?.join(', ')}</p>
+          {reservationData.hotel?.imageHotel && (
+            <img src={reservationData.hotel.imageHotel} alt="Hotel" className="summary-image" />
           )}
         </div>
 
         <div className="summary-section">
-          <h3>Habitación: {state.room?.name} ({state.room?.type})</h3>
-          <p><strong>Número:</strong> {state.room?.roomNumber}</p>
-          <p><strong>Descripción:</strong> {state.room?.roomDescription}</p>
-          <p><strong>Capacidad:</strong> {state.room?.capacity}</p>
-          <p><strong>Precio por noche:</strong> ${state.room?.pricePerNight}</p>
-          <p><strong>Estado:</strong> {state.room?.status}</p>
-          {state.room?.imageRoom && (
-            <img src={state.room.imageRoom} alt="Habitación" className="summary-image" />
+          <h3>Habitación: {reservationData.room?.name} ({reservationData.room?.type})</h3>
+          <p><strong>Número:</strong> {reservationData.room?.roomNumber}</p>
+          <p><strong>Descripción:</strong> {reservationData.room?.roomDescription}</p>
+          <p><strong>Capacidad:</strong> {reservationData.room?.capacity}</p>
+          <p><strong>Precio por noche:</strong> ${reservationData.room?.pricePerNight}</p>
+          <p><strong>Estado:</strong> {reservationData.room?.status}</p>
+          {reservationData.room?.imageRoom && (
+            <img src={reservationData.room.imageRoom} alt="Habitación" className="summary-image" />
           )}
         </div>
-
+        
         {user && (
           <div className="summary-section">
             <h3>Datos del Usuario</h3>

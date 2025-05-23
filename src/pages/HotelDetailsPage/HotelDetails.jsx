@@ -14,17 +14,24 @@ export const HotelDetails = () => {
   const userId = userData?.uid
 
   const handleReserve = (room) => {
+  const reservationState = {
+    hotelId: hotel._id,
+    hotel,
+    roomId: room._id,
+    room,
+    serviceId: null
+  }
+
+  if (!token) {
+    localStorage.setItem('pendingReservation', JSON.stringify(reservationState))
+    navigate('/auth/login') // o tu ruta de login
+  } else {
     navigate('/main/reservation', {
-      state: {
-        //customer: userId   no es necesario enviarlo, lo obtiene del token
-        hotelId: hotel._id,
-        hotel,
-        roomId: room._id,
-        room,
-        serviceId: null
-      }
+      state: reservationState
     })
   }
+}
+
 
   if (loading) return <p className="loading">Cargando...</p>
   if (error) return <p className="error">Error: {error}</p>
