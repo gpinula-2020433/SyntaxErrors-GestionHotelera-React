@@ -1,0 +1,93 @@
+/* Estilos generales */
+.container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+h2 {
+  color: #0d6efd;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.card {
+  border: none;
+  border-radius: 1rem;
+  background-color: var(--card-bg);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.card-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.card-body p {
+  margin: 0.4rem 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.text-success {
+  font-weight: 600;
+  color: #28a745 !important;
+}
+
+.list-group-item {
+  background-color: var(--list-bg);
+  border: none;
+  border-left: 4px solid #0d6efd;
+  margin-bottom: 0.5rem;
+  padding: 0.75rem 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.list-group-item:hover {
+  background-color: rgba(13, 110, 253, 0.08);
+}
+
+/* Variables modo claro/oscuro */
+:root {
+  --card-bg: #ffffff;
+  --text-primary: #212529;
+  --text-secondary: #495057;
+  --list-bg: #f8f9fa;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --card-bg: #1e1e1e;
+    --text-primary: #f1f3f5;
+    --text-secondary: #adb5bd;
+    --list-bg: #2a2a2a;
+  }
+
+  .text-success {
+    color: #71f3a1 !important;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .card-body {
+    font-size: 0.95rem;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+  }
+
+  .list-group-item {
+    font-size: 0.9rem;
+  }
+}
+  

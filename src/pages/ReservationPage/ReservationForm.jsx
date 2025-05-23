@@ -42,7 +42,6 @@ export const ReservationForm = () => {
     const reservationPayload = {
       hotel: reservationData.hotelId,
       room: [reservationData.roomId],
-      service: reservationData.serviceId,
       starDate: startDate,
       endDate: endDate,
       NIT,

@@ -124,3 +124,15 @@ export const createReservation = async (data) => {
 
   return response.data
 }
+
+export const getInvoicesByCustomerRequest = async () => {
+  try {
+    const response = await apiClient.get('/v1/invoice/getCustomer/');
+    return response.data;
+  } catch (err) {
+    return {
+      error: true,
+      err,
+    };
+  }
+};

@@ -16,6 +16,7 @@ import { HotelDetails } from './pages/HotelDetailsPage/HotelDetails'
 import { ReservationForm } from './pages/ReservationPage/ReservationForm'
 import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute' // asegúrate que esta ruta sea correcta
 import { UserPage } from './pages/UserPage/UserPage'
+import { InvoicePage } from './pages/InvoicePage/InvoicePage'
 
 export const routes = [
   {
@@ -40,7 +41,8 @@ export const routes = [
         {
             element: <ProtectedRoute />,
             children: [
-                { path: 'reservation', element: <ReservationForm /> }
+                { path: 'reservation', element: <ReservationForm /> },
+                { path: 'invoice', element: <InvoicePage /> } 
             ]
         }  
         ]
