@@ -56,16 +56,25 @@ export const HotelDetails = () => {
         ) : (
           <div className="card-grid">
             {rooms.map(room => (
-              <div key={room._id} className="card">
+              <div
+                key={room._id}
+                className={`card ${room.status === 'AVAILABLE' ? 'card' : 'card-unavailable'}`}
+              >
                 <h4 className="card-title">{room.name} ({room.type})</h4>
                 <p>{room.roomDescription}</p>
                 <p><strong>Número:</strong> {room.roomNumber}</p>
                 <p><strong>Capacidad:</strong> {room.capacity}</p>
                 <p><strong>Precio por noche:</strong> ${room.pricePerNight}</p>
-                <p><strong>Estado:</strong> {room.status}</p>
-                {room.imageRoom && <img src={room.imageRoom} alt="Imagen habitación" className="card-image" />}
-                <button className="reserve-button" onClick={() => handleReserve(room)}>
-                  Reservar
+                <p><strong>Estado:</strong> {room.status === 'AVAILABLE' ? 'DISPONIBLE' : 'NO DISPONIBLE'}</p>
+                {room.imageRoom && (
+                  <img src={room.imageRoom} alt="Imagen habitación" className="card-image" />
+                )}
+                <button
+                  className={`reserve-button ${room.status === 'AVAILABLE' ? 'button-available' : 'button-unavailable'}`}
+                  onClick={() => handleReserve(room)}
+                  disabled={room.status !== 'AVAILABLE'}
+                >
+                  {room.status === 'AVAILABLE' ? 'RESERVAR' : 'NO DISPONIBLE'}
                 </button>
               </div>
             ))}
