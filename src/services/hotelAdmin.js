@@ -36,19 +36,25 @@ export const addHotelRequest = async (formData) => {
     });
     return response.data;
   } catch (err) {
+    console.error('API error:', err.response?.data || err);
     return { error: true, err };
   }
 };
 
 // Actualizar hotel (sin imagen)
-export const updateHotelRequest = async (id, data) => {
+export const updateHotelRequest = async (id, formData) => {
   try {
-    const response = await apiHotelAdmin.put(`/${id}`, data);
+    const response = await apiHotelAdmin.put(`/${id}`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
     return response.data;
   } catch (err) {
     return { error: true, err };
   }
 };
+
 
 // Actualizar imagen del hotel
 export const updateHotelImageRequest = async (id, formData) => {

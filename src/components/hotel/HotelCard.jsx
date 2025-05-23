@@ -33,10 +33,11 @@ export const HotelCard = ({
     <div className="card hotel-card border-0 shadow-lg overflow-hidden h-100">
       <div className="hotel-image-wrapper">
         <img
-          src={imageHotel}
-          className="card-img-top hotel-image"
-          alt={name}
-        />
+  src={`http://localhost:3200/uploads/img/users/${imageHotel}`}
+  crossOrigin="anonymous"
+  className="card-img-top hotel-image"
+  alt={name}
+/>
         <span className="badge bg-dark position-absolute top-0 end-0 m-2">
           {category}★
         </span>

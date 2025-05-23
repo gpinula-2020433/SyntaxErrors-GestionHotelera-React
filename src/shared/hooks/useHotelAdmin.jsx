@@ -3,6 +3,7 @@ import {
   getHotelsRequest,
   addHotelRequest,
   updateHotelRequest,
+  updateHotelImageRequest,
   deleteHotelRequest
 } from '../../services/hotelAdmin'
 
@@ -31,12 +32,26 @@ export const useHotelsAdmin = () => {
     return res
   }
 
-  const updateHotel = async (id, updatedHotel) => {
-    const res = await updateHotelRequest(id, updatedHotel)
-    if (!res.error) {
+  // Aquí actualizas datos + imagen
+  const updateHotel = async (id, updatedHotelData, imageFile) => {
+    try {
+      // 1. Actualizar datos
+      const resData = await updateHotelRequest(id, updatedHotelData)
+      if (resData.error) throw resData.err
+
+      // 2. Si hay imagen, actualizarla
+      if (imageFile) {
+        const formData = new FormData()
+        formData.append('imageHotel', imageFile)
+        const resImage = await updateHotelImageRequest(id, formData)
+        if (resImage.error) throw resImage.err
+      }
+
       fetchHotels()
+      return { success: true }
+    } catch (error) {
+      return { success: false, error }
     }
-    return res
   }
 
   const deleteHotel = async (id) => {

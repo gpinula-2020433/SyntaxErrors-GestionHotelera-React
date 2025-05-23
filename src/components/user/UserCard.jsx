@@ -1,17 +1,20 @@
-import React from 'react'
+import React from 'react';
+import './UserCard.css'
 
-export const UserCard = ({ name, surname, username, email, phone }) => {
-
+export const UserCard = ({ name, surname, username, email }) => {
   return (
-    <div className=''>
-        <div className=''>
-            <center><h5>{name} {surname} </h5></center>
-            <p>Nombre de Usuario: {username}</p>
-            <p>Correo: {email}</p>
-            <p>Telefono: {phone}</p>
+    <div className='user-card'>
+      <h5>{name} {surname}</h5>
+      <div className="user-info">
+        <div className="user-info-item">
+          <i className="fas fa-user-circle"></i>
+          <span>Nombre de Usuario: {username}</span>
         </div>
-        <div>
+        <div className="user-info-item">
+          <i className="fas fa-envelope"></i>
+          <span>Correo: {email}</span>
         </div>
+      </div>
     </div>
-  )
-}
+  );
+};

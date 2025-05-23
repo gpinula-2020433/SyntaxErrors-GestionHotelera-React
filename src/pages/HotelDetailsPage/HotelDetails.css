@@ -1,158 +1,292 @@
-:root {
-  --color-blue: #00b0ff;
-  --color-green: #00e676;
-  --color-dark: #0a192f;
-  --color-light: #f4f9ff;
-  --color-white: #ffffff;
-  --color-gray: #6c757d;
-  --shadow-light: 0 6px 18px rgba(0, 0, 0, 0.08);
-  --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.15);
-  --radius: 14px;
-  --gradient-main: linear-gradient(135deg, var(--color-blue), var(--color-green));
-}
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  background-color: var(--color-light);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-  padding: 0;
-  color: var(--color-dark);
-}
-
+/* Contenedor general */
 .hotel-details-container {
+  background-color: #121212;
+  color: #f5f5f5;
+  padding: 2rem;
   max-width: 1200px;
   margin: auto;
-  padding: 50px 20px;
+  font-family: 'Segoe UI', sans-serif;
 }
 
+/* Botón de regreso */
+.back-button {
+  background-color: #2c2c2c;
+  color: #f5f5f5;
+  border: 1px solid #444;
+  padding: 0.6rem 1.2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-bottom: 2rem;
+}
+
+.back-button:hover {
+  background-color: #3a3a3a;
+}
+
+/* Información del hotel */
 .hotel-info {
-  background: var(--gradient-main);
-  color: var(--color-white);
-  border-radius: var(--radius);
-  padding: 35px;
-  box-shadow: var(--shadow-light);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: #1d1d2c;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+  color: #e5e5e5;
+  margin: 20px 0;
+  width: 100%;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: transform 0.3s ease;
+  flex-direction: column; /* Imagen arriba en móviles */
 }
 
 .hotel-info:hover {
-  transform: scale(1.02);
-  box-shadow: var(--shadow-hover);
+  transform: translateY(-5px);
 }
 
-.hotel-title {
-  font-size: 40px;
-  font-weight: bold;
-  margin-bottom: 16px;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-}
-
-.hotel-description {
-  font-size: 18px;
-  line-height: 1.6;
-  margin-bottom: 25px;
-}
-
-.hotel-image {
+.image {
+  flex: 1 1 auto;
   width: 100%;
-  height: 400px;
+  height: 320px;
   object-fit: cover;
-  border-radius: var(--radius);
-  border: 4px solid var(--color-white);
-  margin-top: 20px;
-  box-shadow: 0 0 12px rgba(0, 176, 255, 0.4);
+  border-radius: 10px 10px 0 0;
+  margin-bottom: 1.5rem;
 }
 
+.leftSide {
+  flex: 1 1 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-size: 2rem;
+  color: #facc15;
+  font-weight: bold;
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.description {
+  padding: 20px 1px 2px 1px;
+  font-size: 1rem;
+  color: #d4d4d8;
+  line-height: 1.3;
+}
+
+/* rightSide como info adicional */
+.rightSide {
+  flex: 1 1 100%;
+  padding: 20px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.info {
+  font-size: 1rem;
+  color: #d4d4d8;
+  margin-bottom: 1rem;
+}
+
+.info p {
+  margin: 8px 0;
+}
+
+.info strong {
+  color: #a5bdb8;
+}
+
+.map {
+  width: 100%;
+  height: 390px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+  margin-top: 1rem;
+}
+
+.mapContainer {
+  margin-top: 2px;
+}
+
+/* Responsive para pantallas grandes */
+@media (min-width: 601px) {
+  .hotel-info {
+    flex-direction: row;
+    gap: 1rem; /* Espacio pequeño entre imagen y contenido */
+  }
+  .image {
+    width: 100%; /* Reducir un poco el ancho para que no quede mucho espacio */
+    height: 490px;
+    border-radius: 15px 0 0 15px;
+    margin-bottom: 0;
+  }
+  .leftSide {
+    width: 45%; /* Ajuste para que quede justo al lado de la imagen */
+    padding: 20px 10px 1px 20px; /* Reducir padding derecho */
+  }
+  .rightSide {
+    width: 100%; /* Que ocupe todo el ancho debajo del leftSide */
+    padding: 1px 20px 20px 0; /* Reducir padding superior y lateral */
+    margin-top: 0;
+  }
+  .mapContainer {
+    margin-top: 7px;
+  }
+}
+
+
+/* Responsive para pantallas pequeñas */
+@media (max-width: 600px) {
+  .hotel-info {
+    flex-direction: column;
+  }
+  .image {
+    height: 200px;
+    border-radius: 10px 10px 0 0;
+  }
+  .leftSide, .rightSide {
+    width: 100%;
+    padding: 0 20px 20px 20px;
+  }
+  .map {
+    height: 200px;
+  }
+  .mapContainer {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+}
+
+/* Secciones */
 .section {
-  margin-top: 60px;
+  margin-top: 3rem;
 }
 
 .section-title {
-  font-size: 30px;
-  color: var(--color-blue);
-  border-left: 6px solid var(--color-green);
-  padding-left: 14px;
-  margin-bottom: 25px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #22d3ee;
 }
 
+/* Grid para habitaciones, servicios, eventos */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 2rem;
 }
 
+/* Tarjetas */
 .card {
-  background-color: var(--color-white);
-  border-radius: var(--radius);
-  padding: 20px;
-  border: 1.5px solid rgba(0, 224, 134, 0.2);
-  box-shadow: var(--shadow-light);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
-  overflow: hidden;
+  background-color: #2c2c3c;
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  color: #e5e5e5;
 }
 
 .card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-hover);
-  border-color: var(--color-green);
-}
-
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 6px;
-  width: 100%;
-  background: var(--gradient-main);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8);
 }
 
 .card-title {
-  font-size: 20px;
-  font-weight: 600;
-  color: var(--color-dark);
-  margin-bottom: 10px;
-}
-
-.card p {
-  color: var(--color-gray);
-  margin-bottom: 8px;
-  font-size: 15px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #a78bfa;
 }
 
 .card-image {
   width: 100%;
   height: 180px;
   object-fit: cover;
-  margin-top: 15px;
+  border-radius: 12px;
+  margin-top: 1rem;
+}
+
+/* Botón de reservar */
+.reserve-button {
+  margin-top: 1rem;
+  background-color: #10b981;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 0.6rem 1.2rem;
+  border: none;
   border-radius: 10px;
-  border: 2px solid var(--color-blue);
-  transition: transform 0.2s ease, filter 0.3s ease;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
-.card-image:hover {
-  transform: scale(1.04);
-  filter: brightness(1.1);
+.reserve-button:hover {
+  background-color: #059669;
+  transform: scale(1.03);
 }
 
+/* Estados vacíos o de error */
+.empty-section,
 .loading,
 .error {
-  text-align: center;
-  font-size: 20px;
-  padding: 60px 20px;
+  font-style: italic;
+  color: #f87171;
+  margin-top: 0.5rem;
+}
+
+/* Mejora visual para inputs si se llegaran a usar aquí */
+input, textarea {
+  background-color: #2d2d2d;
+  color: #f5f5f5;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 0.5rem;
+  width: 100%;
+  margin-top: 0.3rem;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #aaa;
+}
+
+/* Tarjetas no disponibles */
+.card-unavailable {
+  background-color: #2c2c2c;
+  border: 2px solid #555;
+  opacity: 0.7;
+}
+
+.button-unavailable:hover {
+  background-color: #232222;
+  transform: scale(1.03);
+}
+
+.button-available {
+  background-color: #10b981;
+  color: #ffffff;
+}
+
+.button-available:hover {
+  background-color: #059669;
+  transform: scale(1.03);
+}
+
+.button-unavailable {
+  background-color: #555;
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Botón reservar general */
+.reserve-button {
+  margin-top: 1rem;
   font-weight: bold;
-}
-
-.loading {
-  color: var(--color-blue);
-}
-
-.error {
-  color: #d32f2f;
-  background-color: #ffeaea;
-  border-radius: var(--radius);
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 10px;
+  transition: background 0.3s ease, transform 0.2s ease;
 }

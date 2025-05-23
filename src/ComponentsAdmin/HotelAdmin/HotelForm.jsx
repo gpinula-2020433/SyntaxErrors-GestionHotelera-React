@@ -3,10 +3,12 @@ import { useForm } from "react-hook-form"
 import { useHotelsAdmin } from "../../shared/hooks/useHotelAdmin"
 import { getAllServices } from "../../services/hotelAdmin"
 import { toast } from "react-hot-toast"
+import { addHotelRequest } from "../../services/hotelAdmin"
 
 export const HotelForm = ({ hotel, closeModal, refreshHotels }) => {
   const { addHotel, updateHotel } = useHotelsAdmin()
   const [availableServices, setAvailableServices] = useState([])
+  const [selectedFile, setSelectedFile] = React.useState(null);
 
   const {
     register,
@@ -42,8 +44,7 @@ export const HotelForm = ({ hotel, closeModal, refreshHotels }) => {
         phone: "",
         category: "",
         amenities: "",
-        services: "",
-        image: "",
+        services: ""
       })
     }
 
@@ -56,40 +57,69 @@ export const HotelForm = ({ hotel, closeModal, refreshHotels }) => {
     fetchServices()
   }, [hotel, reset])
 
-  const submit = async (data) => {
-    const formattedData = {
-      ...data,
-      amenities: data.amenities
-        ? data.amenities.split(",").map((a) => a.trim())
-        : [],
-      services: data.services ? [data.services] : [],
-    }
+  const handleFileChange = (e) => {
+  setSelectedFile(e.target.files[0]);
+};
+  
 
-    let res
-    if (hotel && hotel._id) {
-      res = await updateHotel(hotel._id, formattedData)
-    } else {
-      res = await addHotel(formattedData)
-    }
+const submit = async (data) => {
+  const formData = new FormData();
 
-    if (!res.error) {
-      closeModal()
-      refreshHotels()
-      reset()
-      toast.success("Hotel guardado con éxito!")
-    } else {
-      toast.error("Error al guardar hotel, NO ERES ADMINISTRADOR!")
-    }
+  formData.append('name', data.name);
+  formData.append('address', data.address);
+  formData.append('description', data.description);
+  formData.append('phone', data.phone);
+  formData.append('category', data.category);
+
+  // Amenities como arreglo, se envían uno a uno en FormData
+  if (data.amenities) {
+    const amenitiesArray = data.amenities.split(',').map(a => a.trim());
+    amenitiesArray.forEach(a => formData.append('amenities[]', a));
+  } else {
+    // Opcional, si quieres enviar vacío
+    formData.append('amenities[]', '');
   }
 
+  // Services como arreglo, solo un ID en este caso
+  if (data.services) {
+    formData.append('services[]', data.services);
+  } else {
+    // Opcional
+    formData.append('services[]', '');
+  }
+
+  if (selectedFile) {
+    formData.append('imageHotel', selectedFile);
+  }
+
+  let res;
+  if (hotel && hotel._id) {
+    res = await updateHotel(hotel._id, formData);
+  } else {
+    res = await addHotel(formData);
+  }
+
+  if (!res.error) {
+    closeModal();
+    refreshHotels();
+    reset();
+    toast.success("Hotel guardado con éxito!");
+  } else {
+    toast.error("Error al guardar hotel");
+  }
+};
+
+
+
+
   return (
-    <form onSubmit={handleSubmit(submit)} className="w-100">
-      <h2 className="text-center mb-4 text-dark">
+    <form onSubmit={handleSubmit(submit)} className="hotel-form-card" encType="multipart/form-data">
+      <h2 className="text-center mb-4">
         {hotel ? "Editar Hotel" : "Agregar Nuevo Hotel"}
       </h2>
 
       <div className="mb-3">
-        <label className="text-dark"><strong>Nombre del hotel:</strong></label>
+        <label><strong>Nombre del hotel:</strong></label>
         <input
           {...register("name", { required: "El nombre es obligatorio" })}
           className="form-control"
@@ -98,7 +128,7 @@ export const HotelForm = ({ hotel, closeModal, refreshHotels }) => {
       </div>
 
       <div className="mb-3">
-        <label className="text-dark"><strong>Dirección:</strong></label>
+        <label ><strong>Dirección:</strong></label>
         <input
           {...register("address", { required: "La dirección es obligatoria" })}
           className="form-control"
@@ -107,7 +137,7 @@ export const HotelForm = ({ hotel, closeModal, refreshHotels }) => {
       </div>
 
       <div className="mb-3">
-        <label className="text-dark"><strong>Descripción:</strong></label>
+        <label ><strong>Descripción:</strong></label>
         <textarea
           {...register("description", { required: "La descripción es obligatoria" })}
           className="form-control"
@@ -119,7 +149,7 @@ export const HotelForm = ({ hotel, closeModal, refreshHotels }) => {
       </div>
 
       <div className="mb-3">
-        <label className="text-dark"><strong>Teléfono:</strong></label>
+        <label><strong>Teléfono:</strong></label>
         <input
           {...register("phone", { required: "El teléfono es obligatorio" })}
           className="form-control"
@@ -128,7 +158,7 @@ export const HotelForm = ({ hotel, closeModal, refreshHotels }) => {
       </div>
 
       <div className="mb-3">
-        <label className="text-dark"><strong>Categoría:</strong></label>
+        <label><strong>Categoría:</strong></label>
         <input
           {...register("category", { required: "La categoría es obligatoria" })}
           className="form-control"
@@ -137,12 +167,12 @@ export const HotelForm = ({ hotel, closeModal, refreshHotels }) => {
       </div>
 
       <div className="mb-3">
-        <label className="text-dark"><strong>Comodidades</strong> (separadas por coma):</label>
+        <label ><strong>Comodidades</strong> (separadas por coma):</label>
         <input {...register("amenities")} className="form-control" />
       </div>
 
       <div className="mb-3">
-        <label className="text-dark"><strong>Servicios:</strong></label>
+        <label><strong>Servicios:</strong></label>
         <select
           {...register("services", { required: "Selecciona un servicio" })}
           className="form-control"
@@ -157,11 +187,15 @@ export const HotelForm = ({ hotel, closeModal, refreshHotels }) => {
         {errors.services && <small className="text-danger">{errors.services.message}</small>}
       </div>
 
-      <div className="mb-3">
-        <label className="text-dark"><strong>URL de la imagen:</strong></label>
-        <input {...register("image")} className="form-control" />
+     <div className="mb-3">
+        <label><strong>Imagen del hotel:</strong></label>
+        <input 
+          type="file" 
+          accept="image/*"
+          onChange={handleFileChange} 
+          className="form-control" 
+        />
       </div>
-
       <div className="text-end">
         <button type="submit" className="btn btn-success">
           {hotel ? "Actualizar Hotel" : "Agregar Hotel"}

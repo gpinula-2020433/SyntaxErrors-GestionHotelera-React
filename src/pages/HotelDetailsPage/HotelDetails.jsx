@@ -2,6 +2,8 @@ import React from 'react'
 import { useHotelDetails } from '../../shared/hooks/useHotelDetails'
 import { useNavigate, useParams } from 'react-router-dom'
 import { decodeToken } from '../../shared/utils/decodeToken'
+import { FaMapMarkerAlt, FaPhoneAlt, FaStar, FaConciergeBell } from 'react-icons/fa'
+
 import './HotelDetails.css'
 
 export const HotelDetails = () => {
@@ -14,21 +16,29 @@ export const HotelDetails = () => {
   const userId = userData?.uid
 
   const handleReserve = (room) => {
+  const reservationState = {
+    hotelId: hotel._id,
+    hotel,
+    roomId: room._id,
+    room,
+    serviceId: null
+  }
+
+  if (!token) {
+    localStorage.setItem('pendingReservation', JSON.stringify(reservationState))
+    navigate('/auth/login') // o tu ruta de login
+  } else {
     navigate('/main/reservation', {
-      state: {
-        //customer: userId   no es necesario enviarlo, lo obtiene del token
-        hotelId: hotel._id,
-        hotel,
-        roomId: room._id,
-        room,
-        serviceId: null
-      }
+      state: reservationState
     })
   }
+}
+
 
   if (loading) return <p className="loading">Cargando...</p>
   if (error) return <p className="error">Error: {error}</p>
   if (!hotel) return <p className="error">No se encontró el hotel.</p>
+  
 
   return (
     <div key={hotel._id} className="hotel-details-container">
@@ -39,14 +49,50 @@ export const HotelDetails = () => {
       </section>
 
       <section className="hotel-info">
-        <h2 className="hotel-title">{hotel.name}</h2>
-        <p className="hotel-description">{hotel.description}</p>
-        <p><strong>Dirección:</strong> {hotel.address}</p>
-        <p><strong>Teléfono:</strong> {hotel.phone}</p>
-        <p><strong>Categoría:</strong> {hotel.category} ⭐</p>
-        <p><strong>Amenities:</strong> {hotel.amenities.join(', ')}</p>
-        {hotel.imageHotel && <img src={hotel.imageHotel} alt="Imagen del hotel" className="hotel-image" />}
-      </section>
+  <div className="leftSide">
+    <h2 className="name">{hotel.name}</h2>
+    
+    {hotel.imageHotel && 
+      <img
+        src={`http://localhost:3200/uploads/img/users/${hotel.imageHotel}`}
+        crossOrigin="anonymous"
+        alt={`Imagen de ${hotel.name}`}
+        className="image"
+      />
+    }
+
+    {/* {hotel.imageHotel && <img
+  src={`http://localhost:3200/uploads/img/users/${hotel.imageHotel}`}
+  crossOrigin="anonymous"
+  className="card-img-top hotel-image"
+  alt={hotel.name}
+/>}
+     */}
+    <p className="description">{hotel.description}</p>
+  </div>
+
+  <div className="rightSide">
+    <div className="info">
+  <p><strong><FaMapMarkerAlt /> Dirección:</strong> {hotel.address}</p>
+  <p><strong><FaPhoneAlt /> Teléfono:</strong> {hotel.phone}</p>
+  <p><strong><FaStar /> Categoría:</strong> {[...Array(hotel.category)].map((_, i) => <FaStar key={i} color="gold" />)}</p>
+ <p><strong><FaConciergeBell /> Amenidades:</strong> {hotel.amenities.join(', ')}</p>
+
+</div>
+
+
+    <div className="mapContainer">
+      <iframe
+        title="mapa"
+        className="map"
+        src={`https://www.google.com/maps?q=${encodeURIComponent(hotel.address)}&output=embed`}
+        allowFullScreen
+        loading="lazy"
+      />
+    </div>
+  </div>
+</section>
+
 
       {/* Habitaciones */}
       <section className="section">
@@ -56,16 +102,36 @@ export const HotelDetails = () => {
         ) : (
           <div className="card-grid">
             {rooms.map(room => (
-              <div key={room._id} className="card">
+              <div
+                key={room._id}
+                className={`card ${room.status === 'AVAILABLE' ? 'card' : 'card-unavailable'}`}
+              >
                 <h4 className="card-title">{room.name} ({room.type})</h4>
                 <p>{room.roomDescription}</p>
+                {room.imageRoom ? (
+  <img
+    src={`http://localhost:3200/uploads/img/users/${room.imageRoom}`}
+    crossOrigin="anonymous"
+    alt={`Imagen de ${room.name}`}
+    className="image"
+  />
+) : (
+  <p>No hay imagen disponible</p>
+)}
+
+
+
                 <p><strong>Número:</strong> {room.roomNumber}</p>
                 <p><strong>Capacidad:</strong> {room.capacity}</p>
                 <p><strong>Precio por noche:</strong> ${room.pricePerNight}</p>
-                <p><strong>Estado:</strong> {room.status}</p>
-                {room.imageRoom && <img src={room.imageRoom} alt="Imagen habitación" className="card-image" />}
-                <button className="reserve-button" onClick={() => handleReserve(room)}>
-                  Reservar
+                <p><strong>Estado:</strong> {room.status === 'AVAILABLE' ? 'DISPONIBLE' : 'NO DISPONIBLE'}</p>
+                
+                <button
+                  className={`reserve-button ${room.status === 'AVAILABLE' ? 'button-available' : 'button-unavailable'}`}
+                  onClick={() => handleReserve(room)}
+                  disabled={room.status !== 'AVAILABLE'}
+                >
+                  {room.status === 'AVAILABLE' ? 'RESERVAR' : 'NO DISPONIBLE'}
                 </button>
               </div>
             ))}
@@ -86,7 +152,14 @@ export const HotelDetails = () => {
                 <p>{service.description}</p>
                 <p><strong>Precio:</strong> ${service.price}</p>
                 <p><strong>Disponible:</strong> {service.available ? 'Sí' : 'No'}</p>
-                {service.imageService && <img src={service.imageService} alt="Imagen servicio" className="card-image" />}
+                {service.imageHotel && 
+      <img
+        src={`http://localhost:3200/uploads/img/users/${service.imageHotel}`}
+        crossOrigin="anonymous"
+        alt={`Imagen de ${service.name}`}
+        className="image"
+      />
+    }
               </div>
             ))}
           </div>
