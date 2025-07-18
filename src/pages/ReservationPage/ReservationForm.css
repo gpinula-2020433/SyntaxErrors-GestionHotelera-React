@@ -1,19 +1,20 @@
-/* Contenedor principal con dos columnas */
+/* Contenedor principal con diseño responsive */
 .reservation-container {
   display: flex;
-  gap: 40px;
-  padding: 30px 20px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 40px 30px;
   max-width: 1200px;
   margin: 0 auto;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #333;
-  background-color: #f9fafb;
-  min-height: 80vh;
+  gap: 40px;
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #1f2937;
+  background-color: #f8f9fb;
 }
 
-/* Columna izquierda: mensaje arriba, formulario abajo */
+/* Columna izquierda */
 .left-column {
-  flex: 1;
+  flex: 1 1 500px;
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -21,178 +22,172 @@
 
 /* Mensaje de bienvenida */
 .welcome-message {
-  background: linear-gradient(135deg, #6a9cf9, #4361ee);
-  color: #fff;
-  padding: 20px 30px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(67, 97, 238, 0.3);
-  font-size: 1.2rem;
-  line-height: 1.5;
+  background: linear-gradient(135deg, #4f46e5, #1C7CFF);
+  color: white;
+  padding: 24px 28px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(124, 58, 237, 0.2);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  transition: all 0.3s ease-in-out;
 }
 
 /* Formulario */
 .reservation-form {
-  background: #fff;
-  padding: 30px 35px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  background: #ffffff;
+  padding: 35px 40px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
   display: flex;
   flex-direction: column;
   gap: 20px;
+  transition: all 0.3s ease;
 }
 
-/* Títulos dentro del formulario y resumen */
-.reservation-form h2,
-.reservation-summary h2 {
-  margin-bottom: 20px;
-  color: #2c3e50;
+.reservation-form h2 {
+  font-size: 1.75rem;
   font-weight: 700;
-  font-size: 1.8rem;
-  border-bottom: 2px solid #4361ee;
-  padding-bottom: 8px;
+  color: #111827;
+  border-bottom: 3px solid #1C7CFF;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 /* Labels */
 .reservation-form label {
   font-weight: 600;
+  font-size: 1rem;
+  color: #1f2937; /* más oscuro y visible */
+  margin-top: 10px;
   margin-bottom: 6px;
-  color: #4a4a4a;
+  display: block;
+  transition: color 0.2s ease;
 }
 
-/* Inputs, select */
+
 .reservation-form input[type="date"],
 .reservation-form input[type="text"],
 .reservation-form select {
-  padding: 10px 14px;
+  color: #111827; /* texto dentro del input visible */
+  background-color: #f9fafb;
+  border: 2px solid #e5e7eb;
+  padding: 12px 14px;
   font-size: 1rem;
-  border: 2px solid #d1d5db;
-  border-radius: 8px;
-  transition: border-color 0.25s ease;
+  border-radius: 10px;
   outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.reservation-form input[type="date"]:focus,
-.reservation-form input[type="text"]:focus,
+.reservation-form input::placeholder {
+  color: #6b7280;
+  opacity: 1; /* Para que no sea semitransparente */
+}
+.reservation-form input:focus,
 .reservation-form select:focus {
-  border-color: #4361ee;
-  box-shadow: 0 0 8px rgba(67, 97, 238, 0.25);
+  border-color: #1C7CFF;
+  box-shadow: 0 0 8px rgba(124, 58, 237, 0.25);
 }
 
-/* Botón */
-.reservation-form button.cancel-button {
-  background-color: #e53e3e;
-  color: #fff;
+/* Botones */
+.reservation-form button[type="submit"] {
+  background-color: #1C7CFF;
+  color: white;
+  font-weight: 700;
   border: none;
   border-radius: 10px;
   padding: 12px 0;
-  font-weight: 700;
   font-size: 1.1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 10px;
+  transition: background 0.3s ease;
 }
 
-.reservation-form button.cancel-button:hover {
-  background-color: #c53030;
+.reservation-form button[type="submit"]:hover {
+  background-color: #5b21b6;
 }
 
-
-/* Columna derecha - resumen */
-.right-column {
-  flex: 1;
-  background: #fff;
-  padding: 30px 25px;
-  border-radius: 12px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
-  overflow-y: auto;
-  max-height: 80vh;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-
-/* Secciones del resumen */
-.summary-section {
-  border-bottom: 1px solid #e0e7ff;
-  padding-bottom: 15px;
-}
-
-.summary-section:last-child {
-  border-bottom: none;
-}
-
-/* Títulos de secciones */
-.summary-section h3 {
-  font-weight: 700;
-  color: #1f2937;
-  margin-bottom: 12px;
-  font-size: 1.25rem;
-}
-
-/* Texto del resumen */
-.summary-section p {
-  margin: 4px 0;
-  font-size: 1rem;
-  color: #4b5563;
-}
-
-/* Imágenes en resumen */
-.summary-image {
-  width: 100%;
-  max-height: 180px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-top: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-/* Scroll suave para columna derecha */
-.right-column::-webkit-scrollbar {
-  width: 8px;
-}
-
-.right-column::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 10px;
-}
-
-.right-column::-webkit-scrollbar-thumb {
-  background: #4361ee;
-  border-radius: 10px;
-}
-
-.right-column::-webkit-scrollbar-thumb:hover {
-  background: #3048b4;
-}
-
-/* Responsive para pantallas pequeñas */
-@media (max-width: 900px) {
-  .reservation-container {
-    flex-direction: column;
-  }
-
-  .left-column, .right-column {
-    max-height: none;
-  }
-  
-  .right-column {
-    margin-top: 30px;
-    max-height: none;
-  }
-}
 .cancel-button {
-  margin-top: 10px;
-  background-color: #e53e3e;
-  color: #fff;
+  background-color: #f87171;
+  color: white;
+  font-weight: 700;
   border: none;
   border-radius: 10px;
   padding: 12px 0;
-  font-weight: 700;
   font-size: 1.1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .cancel-button:hover {
-  background-color: #c53030;
+  background-color: #dc2626;
+}
+
+/* Columna derecha */
+.right-column {
+  flex: 1 1 500px;
+  background-color: #ffffff;
+  padding: 35px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* Secciones del resumen */
+.summary-section {
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 20px;
+}
+
+.summary-section:last-child {
+  border-bottom: none;
+}
+
+.summary-section h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 10px;
+}
+
+.summary-section p {
+  font-size: 1rem;
+  margin: 4px 0;
+  color: #4b5563;
+}
+
+/* Imagen de resumen */
+.summary-image {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-top: 10px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+/* Scroll personalizado */
+.right-column::-webkit-scrollbar {
+  width: 8px;
+}
+.right-column::-webkit-scrollbar-track {
+  background: #f3f4f6;
+}
+.right-column::-webkit-scrollbar-thumb {
+  background-color: #8bcffa;
+  border-radius: 10px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .reservation-container {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .right-column {
+    max-height: none;
+  }
 }
